@@ -1,13 +1,16 @@
-{% set name = "gradle-language-server" %}
 {% set version = "3.17.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: gradle-language-server
   version: {{ version }}
 
 source:
-  url: https://github.com/microsoft/vscode-gradle/archive/{{ version }}.tar.gz
-  sha256: c2afb03744dc273625056626b100f8a7881d7edfb9b16df65832c8580590463a
+  - url: https://github.com/microsoft/vscode-gradle/archive/{{ version }}.tar.gz
+    sha256: c2afb03744dc273625056626b100f8a7881d7edfb9b16df65832c8580590463a
+  - url: https://github.com/microsoft/build-server-for-gradle/archive/refs/tags/0.3.0.tar.gz
+    sha256: 7651f2197715046708600cbc9a5ad3c7a0b9ffb8b72da01ef36eeb7d45a4cee6
+    folder: extension/build-server-for-gradle
+
 
 build:
   noarch: generic
@@ -18,24 +21,22 @@ requirements:
     - sed
   host:
     - nodejs
-    - openjdk =11
+    - openjdk =21
   run:
     - openjdk
 
 test:
   commands:
-    - gradle-language-server &
-    - exe_pid=$!
-    - trap "kill -SIGTERM ${exe_pid}" SIGTERM
+    - gradle-language-server 2>&1 | grep -q "Index 0 out of bounds for length 0"
 
 about:
-  home: https://github.com/microsoft/{{ name }}
+  home: https://github.com/microsoft/vscode-gradle
   license: MIT
   license_file:
     - LICENSE.md
     - build/reports/dependency-license/
   summary: Manage Gradle Projects, run Gradle tasks and provide better Gradle file authoring experience
-  dev_url: https://github.com/microsoft/{{ name }}
+  dev_url: https://github.com/microsoft/vscode-gradle
 
 extra:
   recipe-maintainers:

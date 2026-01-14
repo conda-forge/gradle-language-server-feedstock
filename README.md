@@ -3,13 +3,13 @@ About gradle-language-server-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gradle-language-server-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/microsoft/gradle-language-server
+Home: https://github.com/microsoft/vscode-gradle
 
 Package license: MIT
 
 Summary: Manage Gradle Projects, run Gradle tasks and provide better Gradle file authoring experience
 
-Development: https://github.com/microsoft/gradle-language-server
+Development: https://github.com/microsoft/vscode-gradle
 
 Current build status
 ====================
